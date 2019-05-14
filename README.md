@@ -4,6 +4,7 @@ AWS Cost Management Process를 자동화하기 위해 OpsNow 도구 내 비용 �
 # Configuration
 ### 1) Webpage Automation 관련 Library를 위한 AWS Lambda Layer 생성
   - Python Folder 아래 파일들을 Python.zip으로 압축 후 Layer에 Upload
+  - Selenium Webdrive를 사용하며, Chrome headless mode로 동작해서 Webpage에 접속/제어함에 따라 관련 Library를 Layer에 생성해 줌
 
 ### 2) OpsNow 로그인, 비용관리 페이지 내 대상파일 다운로드 및 S3 업로드를 위한 Lambda Function 생성
   - 1)단계에서 생성한 Layer를 추가함
