@@ -52,26 +52,25 @@ def lambda_handler(event, context):
 
     # Page 접속 -> Login 페이지로 Redirect
     driver.get("https://asset.opsnow.com/#/rsrc-optm/summary")
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(10)
     print(driver.title)
 
     # Login 되어 있지 않으면 Login
     if driver.title == "OpsNow" :
         elem = driver.find_element_by_id("username")
         elem.send_keys(id)
-        #driver.implicitly_wait(3)
         elem = driver.find_element_by_id("password")
         elem.send_keys(pwd)
 
-        #driver.implicitly_wait(3)
         driver.find_element_by_name("login").click()
-        driver.implicitly_wait(30)
+        driver.implicitly_wait(10)
+        time.sleep(5)
 
     # File download
     print(driver.title)
     driver.find_element_by_xpath("/html/body/app/div/main/bg-asset-rsrc-opti-main/div/bg-asset-summary/div/aside/div/bg-asset-cost-optimization-report-download/div/div/ul/li[1]/button").click()
-    # Download 시간 확보
-    time.sleep(30)
+    # Download 시간 확보 : error 발생 시 늘려줄 것
+    time.sleep(40)
 
     driver.quit()
 
@@ -79,7 +78,7 @@ def lambda_handler(event, context):
     s3 = boto3.resource('s3')
     upload_filename = '/tmp/ANALYSIS-REPORT.xlsx'
     bucket_name = event['bucket']
-    key_name = 'ANALYSIS-REPORT.xlsx'
-    response = s3.meta.client.upload_file(upload_filename, bucket_name, key_name)
+    key_name = 'raw/ANALYSIS-REPORT.xlsx'
+    s3.meta.client.upload_file(upload_filename, bucket_name, key_name)
 
-    return response
+    return key_name
