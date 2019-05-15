@@ -1,5 +1,5 @@
-# cost-management-automation
-AWS Cost Management Process를 자동화하기 위해 OpsNow 도구 내 비용 효율화 대상 파일을 자동으로 다운로드해서 담당자가 비용 검토할 수 있도록 자동으로 이메일을 보내기 위한 프로그램이다.
+# Automation of Cost Management 
+Cloud(AWS)의 Cost Management Process를 자동화하기 위해 OpsNow 도구 내 비용 효율화 대상 파일을 자동으로 다운로드해서 담당자가 비용 검토할 수 있도록 자동으로 이메일을 보내기 위한 프로그램이다.
 
 # Configuration
 ### 1) Webpage Automation 관련 Library를 위한 AWS Lambda Layer 생성
